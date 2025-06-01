@@ -95,7 +95,7 @@
                         <div class="col-span-2">
                             <div class="metric-card bg-black text-white p-4 rounded-lg h-32 flex flex-col justify-between">
                                 <h2 class="text-xl font-bold text-gray-200">Meta Nacional</h2>
-                                <div class="text-6xl font-bold text-center mb-3">331,262</div>
+                                <div class="text-6xl font-bold text-center mb-3">370,000</div>
                             </div>
                         </div>
                     </div>
