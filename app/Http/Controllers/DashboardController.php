@@ -12,7 +12,7 @@ class DashboardController extends Controller
         $states = State::orderBy('name')->get();
         
         $totalMobilized = $states->sum('mobilized');
-        $totalGoal = $states->sum('goal');
+        $totalGoal = 331262;
         $nationalPercentage = $totalGoal > 0 ? round(($totalMobilized / $totalGoal) * 100, 1) : 0;
 
         return view('dashboard', compact('states', 'totalMobilized', 'totalGoal', 'nationalPercentage'));
