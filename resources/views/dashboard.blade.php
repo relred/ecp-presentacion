@@ -27,31 +27,7 @@
                 </div>
 
                 <div class="px-2 py-4">
-                    <!-- Top Section - National Metrics -->
-                    <div class="container mx-auto px-8">
-                        <div class="flex gap-4 mb-4">
-                            <!-- National Percentage Card -->
-                            <div class="w-1/2">
-                                <div class="metric-card bg-black text-white p-4 rounded-lg h-32 flex flex-col justify-between">
-                                    <h2 class="text-xl font-bold text-gray-200">Porcentaje Nacional</h2>
-                                    <div>
-                                        <div class="text-6xl font-bold mb-1 text-center">{{ $nationalPercentage }}%</div>
-                                        <div class="text-gray-300 text-xl text-center">Total Movilizado: {{ number_format($totalMobilized) }}</div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- National Goal Card -->
-                            <div class="w-1/2">
-                                <div class="metric-card bg-black text-white p-4 rounded-lg h-32 flex flex-col justify-between">
-                                    <h2 class="text-xl font-bold text-gray-200">Meta Nacional</h2>
-                                    <div class="text-6xl font-bold">{{ number_format($totalGoal) }}</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Bottom Section - States Grid -->
+                    <!-- States Grid with Metrics -->
                     <div class="grid grid-cols-6 gap-3">
                         @foreach($states as $state)
                             <div class="state-card bg-white p-3 rounded-lg shadow">
@@ -65,7 +41,7 @@
                                         <span class="font-semibold">Progreso</span>
                                         <span class="font-semibold">{{ $state->percentage }}%</span>
                                     </div>
-                                    <div class="progress-bar h-1.5">
+                                    <div class="progress-bar h-3">
                                         @php
                                             if ($state->percentage <= 20) {
                                                 $bar_color = 'bg-red-600';
@@ -85,6 +61,43 @@
                                 </div>
                             </div>
                         @endforeach
+
+                        <!-- National Percentage Card -->
+                        <div class="col-span-2">
+                            <div class="metric-card bg-black text-white p-4 rounded-lg h-32 flex flex-col justify-between">
+                                <h2 class="text-xl font-bold text-gray-200">Porcentaje Nacional</h2>
+                                <div>
+                                    <div class="text-6xl font-bold mb-1 text-center">{{ $nationalPercentage }}%</div>
+                                    
+                                    <div class="text-gray-300 text-xl text-center">Total Movilizado: {{ number_format($totalMobilized) }}</div>
+                                </div>
+                                <div class="progress-bar h-3 w-full">
+                                    @php
+                                        if ($nationalPercentage <= 20) {
+                                            $bar_color = 'bg-red-600';
+                                        } elseif ($nationalPercentage <= 40) {
+                                            $bar_color = 'bg-orange-400';
+                                        } elseif ($nationalPercentage <= 60) {
+                                            $bar_color = 'bg-yellow-400';
+                                        } elseif ($nationalPercentage <= 80) {
+                                            $bar_color = 'bg-purple-500';
+                                        } else {
+                                            $bar_color = 'bg-purple-950';
+                                        }
+                                    @endphp
+                                    <div class="progress-bar-fill {{ $bar_color }} border-2 border-purple-600 rounded-full"
+                                        style="width: {{ $nationalPercentage }}%">-</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- National Goal Card -->
+                        <div class="col-span-2">
+                            <div class="metric-card bg-black text-white p-4 rounded-lg h-32 flex flex-col justify-between">
+                                <h2 class="text-xl font-bold text-gray-200">Meta Nacional</h2>
+                                <div class="text-6xl font-bold text-center">{{ number_format($totalGoal) }}</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
