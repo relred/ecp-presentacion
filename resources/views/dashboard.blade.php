@@ -28,23 +28,25 @@
 
                 <div class="px-2 py-4">
                     <!-- Top Section - National Metrics -->
-                    <div class="flex gap-4 mb-4">
-                        <!-- National Percentage Card -->
-                        <div class="w-1/2">
-                            <div class="metric-card bg-black text-white p-4 rounded-lg h-32 flex flex-col justify-between">
-                                <h2 class="text-xl font-bold text-gray-200">Porcentaje Nacional</h2>
-                                <div>
-                                    <div class="text-4xl font-bold mb-1">{{ $nationalPercentage }}%</div>
-                                    <div class="text-gray-300 text-sm">Total Movilizado: {{ number_format($totalMobilized) }}</div>
+                    <div class="container mx-auto px-8">
+                        <div class="flex gap-4 mb-4">
+                            <!-- National Percentage Card -->
+                            <div class="w-1/2">
+                                <div class="metric-card bg-black text-white p-4 rounded-lg h-32 flex flex-col justify-between">
+                                    <h2 class="text-xl font-bold text-gray-200">Porcentaje Nacional</h2>
+                                    <div>
+                                        <div class="text-6xl font-bold mb-1 text-center">{{ $nationalPercentage }}%</div>
+                                        <div class="text-gray-300 text-xl text-center">Total Movilizado: {{ number_format($totalMobilized) }}</div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <!-- National Goal Card -->
-                        <div class="w-1/2">
-                            <div class="metric-card bg-black text-white p-4 rounded-lg h-32 flex flex-col justify-between">
-                                <h2 class="text-xl font-bold text-gray-200">Meta Nacional</h2>
-                                <div class="text-4xl font-bold">{{ number_format($totalGoal) }}</div>
+                            <!-- National Goal Card -->
+                            <div class="w-1/2">
+                                <div class="metric-card bg-black text-white p-4 rounded-lg h-32 flex flex-col justify-between">
+                                    <h2 class="text-xl font-bold text-gray-200">Meta Nacional</h2>
+                                    <div class="text-6xl font-bold">{{ number_format($totalGoal) }}</div>
+                                </div>
                             </div>
                         </div>
                     </div>
