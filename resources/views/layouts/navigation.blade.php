@@ -19,6 +19,9 @@
                         <x-nav-link :href="route('admin.states.index')" :active="request()->routeIs('admin.states.*')">
                             Administrar Estados
                         </x-nav-link>
+                        <x-nav-link :href="route('admin.municipalities.index')" :active="request()->routeIs('admin.municipalities.*')">
+                            Administrar Municipios
+                        </x-nav-link>
                     @endauth
                 </div>
             </div>
