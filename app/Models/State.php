@@ -24,10 +24,10 @@ class State extends Model
     {
         $percentage = $this->percentage;
         
-        if ($percentage <= 20) return 'red';
-        if ($percentage <= 40) return 'orange';
-        if ($percentage <= 60) return 'yellow';
-        if ($percentage <= 80) return 'light-purple';
-        return 'dark-purple';
+        if ($percentage <= 20) return 'red-500';
+        if ($percentage <= 40) return 'orange-500';
+        if ($percentage <= 60) return 'yellow-600';
+        if ($percentage <= 80) return 'purple-400';
+        return 'purple-800';
     }
 } 

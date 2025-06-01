@@ -9,7 +9,7 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        $states = State::all();
+        $states = State::orderBy('name')->get();
         
         $totalMobilized = $states->sum('mobilized');
         $totalGoal = $states->sum('goal');

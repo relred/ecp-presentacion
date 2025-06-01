@@ -39,8 +39,21 @@
                                                 <span class="font-semibold">{{ $state->percentage }}%</span>
                                             </div>
                                             <div class="progress-bar">
-                                                <div class="progress-bar-fill progress-{{ $state->progress_color }}"
-                                                    style="width: {{ $state->percentage }}%"></div>
+                                                @php
+                                                    if ($state->percentage <= 20) {
+                                                        $bar_color = 'bg-red-600';
+                                                    } elseif ($state->percentage <= 40) {
+                                                        $bar_color = 'bg-orange-400';
+                                                    } elseif ($state->percentage <= 60) {
+                                                        $bar_color = 'bg-yellow-400';
+                                                    } elseif ($state->percentage <= 80) {
+                                                        $bar_color = 'bg-purple-500';
+                                                    } else {
+                                                        $bar_color = 'bg-purple-950';
+                                                    }
+                                                @endphp
+                                                <div class="progress-bar-fill {{ $bar_color }}"
+                                                    style="width: {{ $state->percentage }}%">-</div>
                                             </div>
                                         </div>
                                     </div>
