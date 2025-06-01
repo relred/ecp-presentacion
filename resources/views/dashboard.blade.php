@@ -21,65 +21,71 @@
             <!-- Page Content -->
             <main>
             <div class="min-h-screen bg-[var(--color-light-purple)]">
-                <div class="container mx-auto px-4 py-8">
-                    <div class="flex gap-8">
-                        <!-- Left side - State Cards (2/3) -->
-                        <div class="w-2/3">
-                            <div class="large-screen-grid">
-                                @foreach($states as $state)
-                                    <div class="state-card">
-                                        <h3 class="text-xl font-bold text-[var(--color-strong-purple)] mb-2">{{ $state->name }}</h3>
-                                        <div class="flex justify-between mb-2">
-                                            <span class="text-gray-600">Meta: {{ number_format($state->goal) }}</span>
-                                            <span class="text-gray-600">Actual: {{ number_format($state->mobilized) }}</span>
-                                        </div>
-                                        <div class="mt-auto">
-                                            <div class="flex justify-between mb-1">
-                                                <span class="font-semibold">Progreso</span>
-                                                <span class="font-semibold">{{ $state->percentage }}%</span>
-                                            </div>
-                                            <div class="progress-bar">
-                                                @php
-                                                    if ($state->percentage <= 20) {
-                                                        $bar_color = 'bg-red-600';
-                                                    } elseif ($state->percentage <= 40) {
-                                                        $bar_color = 'bg-orange-400';
-                                                    } elseif ($state->percentage <= 60) {
-                                                        $bar_color = 'bg-yellow-400';
-                                                    } elseif ($state->percentage <= 80) {
-                                                        $bar_color = 'bg-purple-500';
-                                                    } else {
-                                                        $bar_color = 'bg-purple-950';
-                                                    }
-                                                @endphp
-                                                <div class="progress-bar-fill {{ $bar_color }}"
-                                                    style="width: {{ $state->percentage }}%">-</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                @endforeach
+                <!-- Top Banner -->
+                <div class="w-full h-[15vh] bg-black flex items-center justify-center">
+                    <h1 class="text-3xl font-bold text-white">Dashboard de Estados</h1>
+                </div>
+
+                <div class="px-2 py-4">
+                    <!-- Top Section - National Metrics -->
+                    <div class="flex gap-4 mb-4">
+                        <!-- National Percentage Card -->
+                        <div class="w-1/2">
+                            <div class="metric-card bg-black text-white p-4 rounded-lg h-32 flex flex-col justify-between">
+                                <h2 class="text-xl font-bold text-gray-200">Porcentaje Nacional</h2>
+                                <div>
+                                    <div class="text-4xl font-bold mb-1">{{ $nationalPercentage }}%</div>
+                                    <div class="text-gray-300 text-sm">Total Movilizado: {{ number_format($totalMobilized) }}</div>
+                                </div>
                             </div>
                         </div>
 
-                        <!-- Right side - National Metrics (1/3) -->
-                        <div class="w-1/3 space-y-8">
-                            <!-- National Percentage Card -->
-                            <div class="metric-card bg-white mt-16">
-                                <h2 class="text-2xl font-bold text-[var(--color-strong-purple)] mb-4">Porcentaje Nacional</h2>
-                                <div class="text-6xl font-bold mb-2">{{ $nationalPercentage }}%</div>
-                                <div class="text-gray-600">Total Movilizado: {{ number_format($totalMobilized) }}</div>
-                            </div>
-
-                            <!-- National Goal Card -->
-                            <div class="metric-card bg-white">
-                                <h2 class="text-2xl font-bold text-[var(--color-strong-purple)] mb-4">Meta Nacional</h2>
-                                <div class="text-6xl font-bold">{{ number_format($totalGoal) }}</div>
+                        <!-- National Goal Card -->
+                        <div class="w-1/2">
+                            <div class="metric-card bg-black text-white p-4 rounded-lg h-32 flex flex-col justify-between">
+                                <h2 class="text-xl font-bold text-gray-200">Meta Nacional</h2>
+                                <div class="text-4xl font-bold">{{ number_format($totalGoal) }}</div>
                             </div>
                         </div>
                     </div>
+
+                    <!-- Bottom Section - States Grid -->
+                    <div class="grid grid-cols-6 gap-3">
+                        @foreach($states as $state)
+                            <div class="state-card bg-white p-3 rounded-lg shadow">
+                                <h3 class="text-lg font-bold text-[var(--color-strong-purple)] mb-1">{{ $state->name }}</h3>
+                                <div class="flex justify-between mb-1 text-sm">
+                                    <span class="text-gray-600">Meta: {{ number_format($state->goal) }}</span>
+                                    <span class="text-gray-600">Actual: {{ number_format($state->mobilized) }}</span>
+                                </div>
+                                <div class="mt-auto">
+                                    <div class="flex justify-between mb-1 text-sm">
+                                        <span class="font-semibold">Progreso</span>
+                                        <span class="font-semibold">{{ $state->percentage }}%</span>
+                                    </div>
+                                    <div class="progress-bar h-1.5">
+                                        @php
+                                            if ($state->percentage <= 20) {
+                                                $bar_color = 'bg-red-600';
+                                            } elseif ($state->percentage <= 40) {
+                                                $bar_color = 'bg-orange-400';
+                                            } elseif ($state->percentage <= 60) {
+                                                $bar_color = 'bg-yellow-400';
+                                            } elseif ($state->percentage <= 80) {
+                                                $bar_color = 'bg-purple-500';
+                                            } else {
+                                                $bar_color = 'bg-purple-950';
+                                            }
+                                        @endphp
+                                        <div class="progress-bar-fill {{ $bar_color }}"
+                                            style="width: {{ $state->percentage }}%">-</div>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
                 </div>
             </div>
-
             </main>
         </div>
     </body>

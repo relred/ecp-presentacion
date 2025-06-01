@@ -19,63 +19,70 @@
             <!-- Page Content -->
             <main>
                 <div class="min-h-screen bg-[var(--color-light-purple)]">
-                    <div class="container mx-auto px-4 py-8">
-                        <div class="flex gap-8">
-                            <!-- Left side - Municipality Cards (2/3) -->
-                            <div class="w-2/3">
-                                <div class="grid grid-cols-2 gap-6">
-                                    @foreach($municipalities as $municipality)
-                                        <div class="bg-white rounded-lg shadow-lg p-6 flex flex-col">
-                                            <div>
-                                                <h3 class="text-2xl font-bold text-[var(--color-strong-purple)] mb-1">{{ $municipality->name }}</h3>
-                                                <div class="text-gray-600 mb-4">{{ $municipality->state }}</div>
-                                                <div class="flex justify-between mb-4">
-                                                    <span class="text-gray-600">Meta: {{ number_format($municipality->goal) }}</span>
-                                                    <span class="text-gray-600">Actual: {{ number_format($municipality->mobilized) }}</span>
-                                                </div>
-                                            </div>
-                                            <div class="mt-auto">
-                                                <div class="flex justify-between mb-2">
-                                                    <span class="font-semibold">Progreso</span>
-                                                    <span class="font-semibold">{{ $municipality->percentage }}%</span>
-                                                </div>
-                                                <div class="h-2 bg-gray-200 rounded-full overflow-hidden">
-                                                    @php
-                                                        if ($municipality->percentage <= 20) {
-                                                            $bar_color = 'bg-red-600';
-                                                        } elseif ($municipality->percentage <= 40) {
-                                                            $bar_color = 'bg-orange-400';
-                                                        } elseif ($municipality->percentage <= 60) {
-                                                            $bar_color = 'bg-yellow-400';
-                                                        } elseif ($municipality->percentage <= 80) {
-                                                            $bar_color = 'bg-purple-500';
-                                                        } else {
-                                                            $bar_color = 'bg-purple-950';
-                                                        }
-                                                    @endphp
-                                                    <div class="{{ $bar_color }} h-full rounded-full transition-all duration-500"
-                                                        style="width: {{ $municipality->percentage }}%">-</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    @endforeach
-                                </div>
-                            </div>
+                    <!-- Top Banner -->
+                    <div class="w-full h-[15vh] bg-black flex items-center justify-center">
+                        <h1 class="text-3xl font-bold text-white">Dashboard de Municipios</h1>
+                    </div>
 
-                            <!-- Right side - Total Metrics (1/3) -->
-                            <div class="w-1/3 space-y-8">
+                    <div class="px-2 py-4">
+                        <div class="container mx-auto">
+                            <!-- Top Section - Total Metrics -->
+                            <div class="flex gap-4 mb-4">
                                 <!-- Total Percentage Card -->
-                                <div class="bg-white rounded-lg shadow-lg p-8 text-center">
-                                    <h2 class="text-2xl font-bold text-[var(--color-strong-purple)] mb-4">Porcentaje Total</h2>
-                                    <div class="text-6xl font-bold mb-2">{{ $totalPercentage }}%</div>
-                                    <div class="text-gray-600">Total Movilizado: {{ number_format($totalMobilized) }}</div>
+                                <div class="w-1/2">
+                                    <div class="bg-black text-white p-4 rounded-lg h-32 flex flex-col justify-between">
+                                        <h2 class="text-xl font-bold text-gray-200">Porcentaje Total</h2>
+                                        <div>
+                                            <div class="text-4xl font-bold mb-1">{{ $totalPercentage }}%</div>
+                                            <div class="text-gray-300 text-sm">Total Movilizado: {{ number_format($totalMobilized) }}</div>
+                                        </div>
+                                    </div>
                                 </div>
 
                                 <!-- Total Goal Card -->
-                                <div class="bg-white rounded-lg shadow-lg p-8 text-center">
-                                    <h2 class="text-2xl font-bold text-[var(--color-strong-purple)] mb-4">Meta Total</h2>
-                                    <div class="text-6xl font-bold">{{ number_format($totalGoal) }}</div>
+                                <div class="w-1/2">
+                                    <div class="bg-black text-white p-4 rounded-lg h-32 flex flex-col justify-between">
+                                        <h2 class="text-xl font-bold text-gray-200">Meta Total</h2>
+                                        <div class="text-4xl font-bold">{{ number_format($totalGoal) }}</div>
+                                    </div>
                                 </div>
+                            </div>
+
+                            <!-- Bottom Section - Municipality Cards -->
+                            <div class="grid grid-cols-3 gap-6">
+                                @foreach($municipalities as $municipality)
+                                    <div class="bg-white p-6 rounded-lg shadow">
+                                        <h3 class="text-xl font-bold text-[var(--color-strong-purple)] mb-2">{{ $municipality->name }}</h3>
+                                        <div class="text-gray-600 mb-3">{{ $municipality->state }}</div>
+                                        <div class="flex justify-between mb-3">
+                                            <span class="text-gray-600">Meta: {{ number_format($municipality->goal) }}</span>
+                                            <span class="text-gray-600">Actual: {{ number_format($municipality->mobilized) }}</span>
+                                        </div>
+                                        <div class="mt-auto">
+                                            <div class="flex justify-between mb-2">
+                                                <span class="font-semibold">Progreso</span>
+                                                <span class="font-semibold">{{ $municipality->percentage }}%</span>
+                                            </div>
+                                            <div class="h-2 bg-gray-200 rounded-full overflow-hidden">
+                                                @php
+                                                    if ($municipality->percentage <= 20) {
+                                                        $bar_color = 'bg-red-600';
+                                                    } elseif ($municipality->percentage <= 40) {
+                                                        $bar_color = 'bg-orange-400';
+                                                    } elseif ($municipality->percentage <= 60) {
+                                                        $bar_color = 'bg-yellow-400';
+                                                    } elseif ($municipality->percentage <= 80) {
+                                                        $bar_color = 'bg-purple-500';
+                                                    } else {
+                                                        $bar_color = 'bg-purple-950';
+                                                    }
+                                                @endphp
+                                                <div class="{{ $bar_color }} h-full rounded-full transition-all duration-500"
+                                                    style="width: {{ $municipality->percentage }}%">-</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endforeach
                             </div>
                         </div>
                     </div>
