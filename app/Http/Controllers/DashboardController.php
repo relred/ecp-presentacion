@@ -17,4 +17,15 @@ class DashboardController extends Controller
 
         return view('dashboard', compact('states', 'totalMobilized', 'totalGoal', 'nationalPercentage'));
     }
+
+    public function largeScreen()
+    {
+        $states = State::orderBy('name')->get();
+        
+        $totalMobilized = $states->sum('mobilized');
+        $totalGoal = $states->sum('goal');
+        $nationalPercentage = $totalGoal > 0 ? round(($totalMobilized / $totalGoal) * 100, 1) : 0;
+
+        return view('dashboard-large', compact('states', 'totalMobilized', 'totalGoal', 'nationalPercentage'));
+    }
 }

@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\StateManagementController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+Route::get('/large-screen', [DashboardController::class, 'largeScreen'])->name('dashboard.large');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
