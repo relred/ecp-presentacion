@@ -96,6 +96,17 @@
                             <div class="metric-card bg-black text-white p-4 rounded-lg h-32 flex flex-col justify-between">
                                 <h2 class="text-xl font-bold text-gray-200">Meta Nacional</h2>
                                 <div class="text-6xl font-bold text-center">{{ number_format($totalGoal) }}</div>
+                                <div class="flex flex-col-2 gap-6">
+                                    <div class="text-center">
+                                        <div>Por estructura nacional:</div>
+                                        <span class="text-gray-300">331,262</span>
+                                    </div>
+                                    <div class="text-center">
+                                        <div>Por presidentes Municipales:</div>
+                                        <span class="text-gray-300">225,000</span>
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
                     </div>
