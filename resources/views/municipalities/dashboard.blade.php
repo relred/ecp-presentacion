@@ -20,8 +20,8 @@
             <main>
                 <div class="min-h-screen bg-[var(--color-light-purple)]">
                     <!-- Top Banner -->
-                    <div class="w-full h-[15vh] bg-black flex items-center justify-center">
-                        <h1 class="text-3xl font-bold text-white">Dashboard de Municipios</h1>
+                    <div class="h-[24vh] flex items-center justify-center">
+                        <img src="{{ asset('images/banner.jpg') }}" alt="" class="h-full">
                     </div>
 
                     <div class="px-2 py-4">
